@@ -763,3 +763,69 @@ body {
   color: #e0e0e0;
   white-space: pre-wrap;
 }
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  /* ヘッダー：ボタンを小さく、折り返さないように */
+  .header-inner {
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .nav {
+    gap: 8px;
+  }
+
+  .btn-post,
+  .btn-login {
+    padding: 6px 12px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .user-email {
+    display: none;
+  }
+
+  /* メインの余白を狭く */
+  .main {
+    padding: 24px 16px;
+  }
+
+  /* 作品カード：4列 → 2列に */
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* 各種フォーム・詳細を全幅に */
+  .post-form,
+  .detail,
+  .episode-view,
+  .dashboard,
+  .manage,
+  .user-page {
+    padding: 24px 0;
+  }
+
+  .detail-title {
+    font-size: 24px;
+  }
+}
+
+/* さらに狭い画面（小型スマホ） */
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-post,
+  .btn-login {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
