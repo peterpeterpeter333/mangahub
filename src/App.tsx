@@ -11,6 +11,8 @@ import WorkEdit from './WorkEdit'
 import WorkManage from './WorkManage'
 import EpisodeEdit from './EpisodeEdit'
 import UserPage from './UserPage'
+import Terms from './Terms'
+import Privacy from './Privacy'
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/work/:id/manage" element={<WorkManage />} />
         <Route path="/work/:id/episode/:epId/edit" element={<EpisodeEdit />} />
         <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Routes>
     </BrowserRouter>
   )
