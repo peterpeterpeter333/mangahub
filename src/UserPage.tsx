@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import Header from './Header'
-import WorkCard from './WorkCard'
+import Header from './components/Header'
+import WorkCard from './components/WorkCard'
 import { supabase } from './supabaseClient'
 
 type Profile = {

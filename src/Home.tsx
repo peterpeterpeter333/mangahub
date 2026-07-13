@@ -23,11 +23,9 @@ function Home() {
   // 話題の作品（直近7日のいいね数順）を取得
   useEffect(() => {
     const fetchTrending = async () => {
-      // 7日前の日時を計算
       const sevenDaysAgo = new Date()
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
 
-      // 直近7日のいいねを全部取得
       const { data: likes } = await supabase
         .from('likes')
         .select('work_id')
@@ -38,13 +36,11 @@ function Home() {
         return
       }
 
-      // 作品ごとにいいね数を数える
       const countMap: { [key: number]: number } = {}
       likes.forEach((like) => {
         countMap[like.work_id] = (countMap[like.work_id] || 0) + 1
       })
 
-      // いいねが多い順に作品idを並べる（上位4件）
       const topIds = Object.keys(countMap)
         .map(Number)
         .sort((a, b) => countMap[b] - countMap[a])
@@ -55,14 +51,12 @@ function Home() {
         return
       }
 
-      // その作品の情報を取得
       const { data: worksData } = await supabase
         .from('works')
         .select()
         .in('id', topIds)
 
       if (worksData) {
-        // topIdsの順番（いいね数順）に並べ替える
         const sorted = topIds
           .map((id) => worksData.find((w) => w.id === id))
           .filter((w): w is Work => w !== undefined)
@@ -101,24 +95,6 @@ function Home() {
     <>
       <Header />
       <main className="main">
-        {trending.length > 0 && (
-          <section className="section">
-            <h2 className="section-title">🔥 話題の作品</h2>
-            <div className="card-grid">
-              {trending.map((work) => (
-                <WorkCard
-                  key={work.id}
-                  index={work.id}
-                  title={work.title}
-                  author={work.author}
-                  genre={work.genre}
-                  emoji="📖"
-                />
-              ))}
-            </div>
-          </section>
-        )}
-
         <div className="search-box">
           <input
             className="search-input"
@@ -140,6 +116,24 @@ function Home() {
             </button>
           ))}
         </div>
+
+        {trending.length > 0 && (
+          <section className="section">
+            <h2 className="section-title">🔥 話題の作品</h2>
+            <div className="card-grid">
+              {trending.map((work) => (
+                <WorkCard
+                  key={work.id}
+                  index={work.id}
+                  title={work.title}
+                  author={work.author}
+                  genre={work.genre}
+                  emoji="📖"
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="section">
           <h2 className="section-title">新着作品</h2>
