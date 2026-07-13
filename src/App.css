@@ -905,3 +905,30 @@ body {
   font-size: 12px;
   color: #b3b3b3;
 }
+
+.agree-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.agree-check input {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.agree-check label {
+  font-size: 13px;
+  color: #b3b3b3;
+  line-height: 1.6;
+}
+
+.agree-link {
+  color: #1ed760;
+  text-decoration: none;
+}
+
+.agree-link:hover {
+  text-decoration: underline;
+}
