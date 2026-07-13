@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Header from './Header'
 import { supabase } from './supabaseClient'
 
@@ -9,6 +9,7 @@ function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
+  const [agreed, setAgreed] = useState(false)
 
   const handleSubmit = async () => {
     if (email === '' || password === '') {
@@ -32,6 +33,11 @@ function Auth() {
       // 新規登録
       if (username === '') {
         alert('ユーザー名を入力してください')
+        return
+      }
+
+      if (!agreed) {
+        alert('利用規約に同意してください')
         return
       }
 
@@ -102,6 +108,23 @@ function Auth() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
+          {!isLogin && (
+            <div className="agree-check">
+              <input
+                type="checkbox"
+                id="agree"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+              />
+              <label htmlFor="agree">
+                <Link to="/terms" target="_blank" className="agree-link">利用規約</Link>
+                および
+                <Link to="/privacy" target="_blank" className="agree-link">プライバシーポリシー</Link>
+                に同意します
+              </label>
+            </div>
+          )}
 
           <button className="btn-submit" onClick={handleSubmit}>
             {isLogin ? 'ログイン' : '登録する'}

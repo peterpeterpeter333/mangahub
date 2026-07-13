@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import WorkCard from './WorkCard'
 import Header from './Header'
 import { supabase } from './supabaseClient'
+import Footer from './Footer'
 
 type Work = {
   id: number
@@ -90,6 +91,7 @@ function Home() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   )
 }
