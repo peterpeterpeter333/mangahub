@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import WorkCard from './WorkCard'
-import Header from './Header'
+import WorkCard from './components/WorkCard'
+import Header from './components/Header'
 import { supabase } from './supabaseClient'
-import Footer from './Footer'
+import Footer from './components/Footer'
 
 type Work = {
   id: number

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import Header from './Header'
+import Header from './components/Header'
 import { supabase } from './supabaseClient'
 
 function Auth() {
