@@ -41,29 +41,20 @@ function Auth() {
         return
       }
 
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: { username },
+        },
       })
       if (error) {
         alert('登録に失敗しました：' + error.message)
         return
       }
 
-      // プロフィール（ユーザー名）を作成
-      if (data.user) {
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert({ id: data.user.id, username })
-
-        if (profileError) {
-          alert('プロフィールの作成に失敗しました：' + profileError.message)
-          return
-        }
-      }
-
-      alert('登録しました！')
-      navigate('/')
+      alert('確認メールを送信しました。メール内のリンクをクリックして登録を完了してください。')
+      setIsLogin(true)
     }
   }
 
